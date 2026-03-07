@@ -12,7 +12,7 @@ void insertionSort(vector<int>& nums) {
         nums[j + 1] = key;
     }
 }
-void insertionSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons) {
+void insertionSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons) {
     assignments = comparisons = 0;
     ++assignments; // before loop
     for (int i = 1; ++comparisons && i < nums.size(); i++, ++assignments){
