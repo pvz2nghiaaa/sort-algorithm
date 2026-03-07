@@ -41,7 +41,7 @@ void heapSort(vector<int>& nums)
     }
 }
 
-void heapifyOperationsCount(vector<int>& nums, int n, int pos, int& assignments, int& comparisons)
+void heapifyOperationsCount(vector<int>& nums, int n, int pos, long long& assignments, long long& comparisons)
 {
     int largest = pos;
     ++assignments;
@@ -76,7 +76,7 @@ void heapifyOperationsCount(vector<int>& nums, int n, int pos, int& assignments,
     }
 }
 
-void heapSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons) 
+void heapSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons) 
 {
     assignments = 0;
     comparisons = 0;

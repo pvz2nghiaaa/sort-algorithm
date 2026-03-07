@@ -16,7 +16,7 @@ void selectionSort(vector<int>& nums)
     }
 }
 
-void selectionSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons)
+void selectionSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons)
 {
     assignments = 0;
     comparisons = 0;

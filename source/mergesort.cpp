@@ -44,7 +44,7 @@ void mergeSort(vector<int>& nums)
     return mergeSort(nums, l, r);
 }
 
-void mergeRangeOperationsCount(vector<int>& nums, int l, int mid, int r, int& assignments, int& comparisons)
+void mergeRangeOperationsCount(vector<int>& nums, int l, int mid, int r, long long& assignments, long long& comparisons)
 {
     int i = l;
     ++assignments;
@@ -86,7 +86,7 @@ void mergeRangeOperationsCount(vector<int>& nums, int l, int mid, int r, int& as
     }
 }
 
-void mergeSortOperationsCount(vector<int>& nums, int l, int r, int& assignments, int& comparisons)
+void mergeSortOperationsCount(vector<int>& nums, int l, int r, long long& assignments, long long& comparisons)
 {
     if (++comparisons && l >= r)
         return;
@@ -99,7 +99,7 @@ void mergeSortOperationsCount(vector<int>& nums, int l, int r, int& assignments,
     return mergeRangeOperationsCount(nums, l, mid, r, assignments, comparisons);
 }
 
-void mergeSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons)
+void mergeSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons)
 {
     assignments = 0;
     comparisons = 0;
