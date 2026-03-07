@@ -1,6 +1,7 @@
 #include <vector>
+using namespace std;
 
-void shakerSort(std::vector<int> &arr)
+void shakerSort(vector<int> &arr)
 {
     if (arr.empty())
         return;
@@ -18,7 +19,7 @@ void shakerSort(std::vector<int> &arr)
         {
             if (arr[i] > arr[i + 1])
             {
-                std::swap(arr[i], arr[i + 1]);
+                swap(arr[i], arr[i + 1]);
                 swapped = true;
             }
         }
@@ -33,7 +34,7 @@ void shakerSort(std::vector<int> &arr)
         {
             if (arr[i] > arr[i + 1])
             {
-                std::swap(arr[i], arr[i + 1]);
+                swap(arr[i], arr[i + 1]);
                 swapped = true;
             }
         }
