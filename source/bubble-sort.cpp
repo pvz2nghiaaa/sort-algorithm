@@ -22,7 +22,7 @@ void bubble_sort(vector<int> &arr)
     }
 }
 
-void bubble_Sort_OperationCount(vector<int> &nums, int &assignments, int &comparisons)
+void bubbleSortOperationCount(vector<int> &nums, int &assignments, int &comparisons)
 {
     assignments = comparisons = 0;
 

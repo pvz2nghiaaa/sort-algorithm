@@ -29,7 +29,7 @@ void quickSort(vector<int> &nums)
     quickSort(nums, 0, nums.size() - 1);
 }
 
-void quick_Sort_OperationCount(vector<int> &nums, int &assignments, int &comparisions)
+void quickSortOperationCount(vector<int> &nums, int &assignments, int &comparisions)
 {
     assignments = comparisions = 0;
     quick_Sort_OC(nums, 0, nums.size() - 1, assignments, comparisions);
