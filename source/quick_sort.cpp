@@ -1,6 +1,7 @@
 #include <vector>
+using namespace std;
 
-void quickSort(std::vector<int> &nums, int low, int high)
+void quickSort(vector<int> &nums, int low, int high)
 {
     if (low >= high)
         return;
@@ -12,13 +13,17 @@ void quickSort(std::vector<int> &nums, int low, int high)
     {
         if (nums[j] < pivot)
         {
-            std::swap(nums[i], nums[j]);
+            swap(nums[i], nums[j]);
             i++;
         }
     }
 
-    std::swap(nums[i], nums[high]);
+    swap(nums[i], nums[high]);
 
     quickSort(nums, low, i - 1);
     quickSort(nums, i + 1, high);
+}
+void quickSort(vector<int> &nums)
+{
+    return quickSort(nums, 0, nums.size() - 1);
 }
