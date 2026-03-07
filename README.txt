@@ -1,2 +1,1 @@
-# sort-algorithm
-⚡⚡⚡
+Libraries used: iostream, vector
