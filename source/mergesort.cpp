@@ -55,28 +55,28 @@ void mergeRangeOperationsCount(vector<int>& nums, int l, int mid, int r, int& as
 
     int curIdx = 0;
     ++assignments;
-    while (++comparisons && l <= mid && ++comparisons && j <= r)
+    while (++comparisons && i <= mid && ++comparisons && j <= r)
     {
         if (++comparisons && nums[i] <= nums[j])
         {
             tmpNums[curIdx++] = nums[i++];
-            ++assignments;
+            assignments += 3;
         }
         else
         {
             tmpNums[curIdx++] = nums[j++];
-            ++assignments;
+            assignments += 3;
         }
     }
     while (++comparisons && i <= mid)
     {
         tmpNums[curIdx++] = nums[i++];
-        ++assignments;
+        assignments += 3;
     }
     while (++comparisons && j <= r)
     {
         tmpNums[curIdx++] = nums[j++];
-        ++assignments;
+        assignments += 3;
     }
 
     for (curIdx = l, ++assignments; ++comparisons && curIdx <= r; curIdx++, ++assignments)

@@ -93,6 +93,6 @@ void heapSortOperationsCount(vector<int>& nums, int& assignments, int& compariso
     {
         swap(nums[0], nums[i]);
         assignments += 3;
-        heapify(nums, i, 0);
+        heapifyOperationsCount(nums, i, 0, assignments, comparisons);
     }
 }
