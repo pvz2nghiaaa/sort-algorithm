@@ -15,7 +15,7 @@ void shellSort(vector<int>& nums){
         }
     }
 }
-void shellSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons){
+void shellSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons){
     assignments = comparisons = 0;
     int n = nums.size();+assignments;
     ++assignments; // before loop
