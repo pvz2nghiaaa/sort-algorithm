@@ -42,7 +42,7 @@ void shakerSort(vector<int> &nums)
     }
 }
 
-void shakerSortOperationCount(vector<int> &nums, int &assignments, int &comparisions)
+void shakerSortOperationCount(vector<int> &nums, long long &assignments, long long &comparisions)
 {
     ++assignments;
     if (nums.empty())

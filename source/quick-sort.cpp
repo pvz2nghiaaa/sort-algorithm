@@ -6,7 +6,7 @@ void quickSort(vector<int> &nums, int low, int high)
     if (low >= high)
         return;
 
-    int pivot = nums[high];
+    int pivot = nums[(low + high)/2];
     int i = low;
 
     for (int j = low; j < high; j++)
@@ -29,18 +29,12 @@ void quickSort(vector<int> &nums)
     quickSort(nums, 0, nums.size() - 1);
 }
 
-void quickSortOperationCount(vector<int> &nums, int &assignments, int &comparisions)
-{
-    assignments = comparisions = 0;
-    quick_Sort_OC(nums, 0, nums.size() - 1, assignments, comparisions);
-}
-
-void quick_Sort_OC(vector<int> &nums, int low, int high, int &assignments, int &comparisions)
+void quick_Sort_OC(vector<int> &nums, int low, int high, long long &assignments, long long &comparisions)
 {
     if (++comparisions, low >= high)
         return;
 
-    int pivot = nums[high];
+    int pivot = nums[(low + high)/2];
     ++assignments;
     int i = low;
     ++assignments;
@@ -62,4 +56,10 @@ void quick_Sort_OC(vector<int> &nums, int low, int high, int &assignments, int &
 
     quick_Sort_OC(nums, low, i - 1, assignments, comparisions);
     quick_Sort_OC(nums, i + 1, high, assignments, comparisions);
+}
+
+void quickSortOperationCount(vector<int> &nums, long long &assignments, long long &comparisions)
+{
+    assignments = comparisions = 0;
+    quick_Sort_OC(nums, 0, nums.size() - 1, assignments, comparisions);
 }

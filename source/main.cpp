@@ -36,7 +36,7 @@ void (*const listSort[])(vector<int>&) = {
 	nullptr, nullptr, nullptr
 };
 void (*const listSortOperationsCount[])(vector<int>&, long long&, long long&) = { 
-	nullptr, nullptr, nullptr, 
+	bubbleSortOperationCount, shakerSortOperationCount, quickSortOperationCount,
 	selectionSortOperationsCount, heapSortOperationsCount, mergeSortOperationsCount,
 	insertionSortOperationsCount, binaryInsertionSortOperationsCount, shellSortOperationsCount, 
 	nullptr, nullptr, nullptr
@@ -51,7 +51,7 @@ const char* input_txt_name[] = { "input_1.txt", "input_3.txt", "input_4.txt", "i
 const int sizes[] = { 10000, 30000, 50000, 100000, 300000, 500000 };
 
 // output parameter
-int chosenOutputParameter = -1;
+int chosenOutputParameter = 2;
 const char* output_parameter[] = { "-time", "-comp", "-both" };
 
 // file name
@@ -139,6 +139,9 @@ void algorithmMode() {
 		outputSortedResult();
 		return;
 	}
+	if (input_size == -1) {
+		return void(printf("Error: Required input size!"));
+	}
 	if (chosenInputOrder >= 0) {
 		vector<int> nums = generateDataVector(input_size, chosenInputOrder);
 		int n = nums.size();
@@ -156,10 +159,11 @@ void algorithmMode() {
 		outputGeneratedInput(nums, "input.txt");
 		return;
 	}
+	printf("Input size: %d\n", input_size);
 	for (int inputOrder = 0; inputOrder < 4; inputOrder++) {
 		vector<int> nums = generateDataVector(input_size, inputOrder);
 		int n = nums.size();
-		printf("\nInput size: %d\nInput order: %s\n", n, input_order_name[inputOrder]);
+		printf("\nInput order: %s\n", input_order_name[inputOrder]);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
 			int realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
@@ -174,12 +178,50 @@ void algorithmMode() {
 }
 
 void comparisonMode() {
-	int sizeID = 0;
-	while (sizeID < 6) {
-
-		if (input_size >= 0)
-			break;
-		++sizeID;
+	printf("COMPARE MODE\nAlgorithm: %s | %s\n", algorithmName[IDAlgorithm1], algorithmName[IDAlgorithm2]);
+	if (inputFile) {
+		vector<int> nums = readInputFile();
+		int n = nums.size();
+		printf("Input file: %s\nInput size: %d\n", inputFile, n);
+		printf("------------------------------\n");
+		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
+			int realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %d | ", realTime1);
+			int realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
+			printf("%d\n", realTime2);
+		}
+		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
+			long long comparisions1 = comparisionsAlgorithm(IDAlgorithm1, nums);
+			printf("Comparisions: %lld | ", comparisions1);
+			long long comparisions2 = comparisionsAlgorithm(IDAlgorithm2, nums);
+			printf("%lld\n", comparisions2);
+		}
+		return;
+	}
+	if (chosenInputOrder >= 0) {
+		if (input_size == -1) {
+			return void(printf("Error: Required input size!"));
+		}
+		vector<int> nums = generateDataVector(input_size, chosenInputOrder);
+		int n = nums.size();
+		printf("Input size: %d\nInput order: %s\n", n, input_order_name[chosenInputOrder]);
+		printf("------------------------------\n");
+		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
+			int realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %d | ", realTime1);
+			int realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
+			printf("%d\n", realTime2);
+		}
+		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
+			long long comparisions1 = comparisionsAlgorithm(IDAlgorithm1, nums);
+			printf("Comparisions: %lld | ", comparisions1);
+			long long comparisions2 = comparisionsAlgorithm(IDAlgorithm2, nums);
+			printf("%lld\n", comparisions2);
+		}
+		outputGeneratedInput(nums, "input.txt");
+	}
+	else {
+		printf("Error: Input order invalid or not included!");
 	}
 }
 
@@ -227,12 +269,17 @@ int main(int argc, char* argv[]) {
 		else { // input file's name
 			if (fopen(argv[pos_argv], "r"))
 				inputFile = argv[pos_argv];
+			else {
+				printf("Error: Input file not found!");;
+				return 0;
+			}
 		}
 		++pos_argv;
 	}
 
 	findAlgorithmUsed();
 	modeExecution();
+	printf("\n");
 
 	return 0;
 }
