@@ -6,7 +6,8 @@ void quickSort(vector<int> &nums, int low, int high)
     if (low >= high)
         return;
 
-    int pivot = nums[(low + high)/2];
+    swap(nums[(low + high)/2], nums[high]);
+    int pivot = nums[high];
     int i = low;
 
     for (int j = low; j < high; j++)
