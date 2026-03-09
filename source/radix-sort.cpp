@@ -1,6 +1,6 @@
 #include <sorts.h>
 
-void countingSort(vector<int>& nums, int exp){
+void CountingSort(vector<int>& nums, int exp){
 	vector<int> output(nums.size());    
 	vector<int> cnt(10, 0);
 	for (int i = 0; i < nums.size(); i++)
@@ -21,10 +21,10 @@ void radixSort(vector<int>& nums) {
 			mx = nums[i];
 	}
 	for (int i = 1; i <= mx; i *= 10)
-		countingSort(nums, i);
+		CountingSort(nums, i);
 }
 
-void countingSortOperationsCount(vector<int>& nums, int exp, int& assignments, int& comparisons){
+void CountingSortOperationsCount(vector<int>& nums, int exp, int& assignments, int& comparisons){
 	vector<int> output(nums.size()); assignments += nums.size();
 	vector<int> cnt(10, 0); assignments += 10;
 	assignments++;
@@ -49,6 +49,6 @@ void radixSortOperationsCount(vector<int>& nums, int& assignments, int& comparis
 			mx = nums[i];
 	}
 	assignments++; // i = 1
-	for (int i = 1; comparisons && i <= mx; i *= 10, assignments++)
-		countingSortOperationsCount(nums, i, assignments, comparisons);
+	for (int i = 1; ++comparisons && i <= mx; i *= 10, assignments++)
+		CountingSortOperationsCount(nums, i, assignments, comparisons);
 }
