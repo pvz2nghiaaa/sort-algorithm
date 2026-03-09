@@ -20,3 +20,13 @@ void selectionSortOperationsCount(vector<int> &, long long &, long long &);
 void mergeSort(vector<int> &);
 void mergeSortOperationsCount(vector<int> &, long long &, long long &);
 void GenerateData(int a[], int, int);
+void countingSort(vector<int>&);
+
+void countingSortOperationsCount(vector<int>&, long long&, long long&);
+void CountingSort(vector<int>&, int);
+void countingSortOperationsCount(vector<int>&, long long&, long long&);
+void CountingSortOperationsCount(vector<int>&, int, long long&, long long&);
+void radixSort(vector<int>&);
+void radixSortOperationsCount(vector<int>&, long long&, long long&);
+void flashSort(vector<int>&);
+void flashSortOperationsCount(vector<int>&, long long&, long long&);

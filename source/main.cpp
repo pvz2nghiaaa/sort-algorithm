@@ -33,13 +33,13 @@ void (*const listSort[])(vector<int>&) = {
 	bubble_sort, shakerSort, quickSort, 
 	selectionSort, heapSort, mergeSort, 
 	insertionSort, binaryInsertionSort, shellSort, 
-	nullptr, nullptr, nullptr
+	countingSort, radixSort, flashSort
 };
 void (*const listSortOperationsCount[])(vector<int>&, long long&, long long&) = { 
 	bubbleSortOperationCount, shakerSortOperationCount, quickSortOperationCount,
 	selectionSortOperationsCount, heapSortOperationsCount, mergeSortOperationsCount,
 	insertionSortOperationsCount, binaryInsertionSortOperationsCount, shellSortOperationsCount, 
-	nullptr, nullptr, nullptr
+	countingSortOperationsCount, radixSortOperationsCount, flashSortOperationsCount
 };
 
 // input parameter
