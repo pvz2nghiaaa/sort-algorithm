@@ -1,4 +1,6 @@
-#include <sorts.h>
+#include <vector>
+using namespace std;
+
 
 void CountingSort(vector<int>& nums, int exp){
 	vector<int> output(nums.size());    
