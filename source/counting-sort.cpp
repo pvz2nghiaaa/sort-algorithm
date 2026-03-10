@@ -2,11 +2,15 @@
 using namespace std;
 
 void countingSort(vector<int>& nums){
-	vector<int> cnt((1 << 15), 0);
+	int maxElement = 0;
+	for (int i = 0; i < nums.size(); i++)
+		if (nums[i] > maxElement)
+			maxElement = nums[i];
+	vector<int> cnt(maxElement + 1, 0);
 	for (int i = 0; i < nums.size(); i++)
 		cnt[nums[i]]++;
 	int j = 0;
-	for (int i = 0; i < (1 << 15); i++){
+	for (int i = 0; i <= maxElement; i++){
 		while (cnt[i] > 0){
 			nums[j++] = i;
 			cnt[i]--;
@@ -14,19 +18,22 @@ void countingSort(vector<int>& nums){
 	}
 }
 void countingSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons){
-	assignments = comparisons = 0;
-	vector<int> cnt((1 << 15), 0); assignments += (1 << 15);
-
-	assignments++; // int i = 0
-	for (int i = 0; ++comparisons && i < nums.size(); i++, assignments++)
-		cnt[nums[i]]++, assignments++;
-	
-	int j = 0; assignments++;
-	assignments++; // int i = 0
-	for (int i = 0; ++comparisons && i < (1 << 15); i++, assignments++){
+	assignments = comparisons = 0;	
+	int maxElement = 0; ++assignments;
+	 ++assignments; // before loop
+	for (int i = 0; ++comparisons && i < nums.size(); i++, ++assignments)
+		if (++comparisons && nums[i] > maxElement)
+			maxElement = nums[i], ++assignments;
+	vector<int> cnt(maxElement + 1, 0); assignments += maxElement + 1;
+	 ++assignments; // before loop
+	for (int i = 0; ++comparisons && i < nums.size(); i++, ++assignments)
+		cnt[nums[i]]++, ++assignments;
+	int j = 0; ++assignments;
+	 ++assignments; // before loop
+	for (int i = 0; ++comparisons && i <= maxElement; i++, ++assignments){
 		while (++comparisons && cnt[i] > 0){
-			nums[j++] = i; assignments += 2; // j++ && nums[j] = i
-			cnt[i]--; assignments++;
+			nums[j++] = i; assignments += 2; // j++ &  nums[j] = i;
+			cnt[i]--; ++assignments;
 		}
 	}
 }
