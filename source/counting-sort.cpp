@@ -1,4 +1,5 @@
-#include <sorts.h>
+#include <vector>
+using namespace std;
 
 void countingSort(vector<int>& nums){
 	vector<int> cnt((1 << 15), 0);
@@ -12,7 +13,7 @@ void countingSort(vector<int>& nums){
 		}
 	}
 }
-void countingSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons){
+void countingSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons){
 	assignments = comparisons = 0;
 	vector<int> cnt((1 << 15), 0); assignments += (1 << 15);
 

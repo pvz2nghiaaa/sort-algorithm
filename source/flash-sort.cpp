@@ -64,7 +64,7 @@ void flashSort(vector<int>& nums){
 
 
 }
-void flashSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons){
+void flashSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons){
     int n = nums.size(); assignments++;
     if (++comparisons && n <= 1) return;
 

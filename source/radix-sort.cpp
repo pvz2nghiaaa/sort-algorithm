@@ -26,7 +26,7 @@ void radixSort(vector<int>& nums) {
 		CountingSort(nums, i);
 }
 
-void CountingSortOperationsCount(vector<int>& nums, int exp, int& assignments, int& comparisons){
+void CountingSortOperationsCount(vector<int>& nums, int exp, long long& assignments, long long& comparisons){
 	vector<int> output(nums.size()); assignments += nums.size();
 	vector<int> cnt(10, 0); assignments += 10;
 	assignments++;
@@ -42,7 +42,7 @@ void CountingSortOperationsCount(vector<int>& nums, int exp, int& assignments, i
 	}
 	nums = output; assignments += nums.size();
 }
-void radixSortOperationsCount(vector<int>& nums, int& assignments, int& comparisons){
+void radixSortOperationsCount(vector<int>& nums, long long& assignments, long long& comparisons){
 	assignments = comparisons = 0;
 	int mx = -1; assignments++;
 	assignments++;
