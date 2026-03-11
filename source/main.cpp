@@ -88,11 +88,11 @@ vector<int> generateDataVector(int n, int dataType) {
 	return nums;
 }
 
-int executionTimeAlgorithm(int algorithmID, vector<int> nums) {
+double executionTimeAlgorithm(int algorithmID, vector<int> nums) {
 	auto start = chrono::high_resolution_clock::now();
 	listSort[algorithmID](nums);
 	auto end = chrono::high_resolution_clock::now();
-	auto duration = chrono::duration_cast<chrono::milliseconds>(end - start);
+	chrono::duration<double, milli> duration = end - start;
 	sorted_result = nums;
 	return duration.count();
 }
@@ -129,8 +129,8 @@ void algorithmMode() {
 		printf("Input file: %s\nInput size: %d\n", inputFile, n);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
-			int realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
-			printf("Running time: %d\n", realTime);
+			double realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %.3f\n", realTime);
 		}
 		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
 			long long comparisions = comparisionsAlgorithm(IDAlgorithm1, nums);
@@ -148,8 +148,8 @@ void algorithmMode() {
 		printf("Input size: %d\nInput order: %s\n", n, input_order_name[chosenInputOrder]);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
-			int realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
-			printf("Running time: %d\n", realTime);
+			double realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %.3f\n", realTime);
 		}
 		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
 			long long comparisions = comparisionsAlgorithm(IDAlgorithm1, nums);
@@ -166,8 +166,8 @@ void algorithmMode() {
 		printf("\nInput order: %s\n", input_order_name[inputOrder]);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
-			int realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
-			printf("Running time: %d\n", realTime);
+			double realTime = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %.3f\n", realTime);
 		}
 		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
 			long long comparisions = comparisionsAlgorithm(IDAlgorithm1, nums);
@@ -185,10 +185,10 @@ void comparisonMode() {
 		printf("Input file: %s\nInput size: %d\n", inputFile, n);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
-			int realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
-			printf("Running time: %d | ", realTime1);
-			int realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
-			printf("%d\n", realTime2);
+			double realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %.3f | ", realTime1);
+			double realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
+			printf("%.3f\n", realTime2);
 		}
 		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
 			long long comparisions1 = comparisionsAlgorithm(IDAlgorithm1, nums);
@@ -207,10 +207,10 @@ void comparisonMode() {
 		printf("Input size: %d\nInput order: %s\n", n, input_order_name[chosenInputOrder]);
 		printf("------------------------------\n");
 		if (chosenOutputParameter == 0 || chosenOutputParameter == 2) { // calculate running time
-			int realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
-			printf("Running time: %d | ", realTime1);
-			int realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
-			printf("%d\n", realTime2);
+			double realTime1 = executionTimeAlgorithm(IDAlgorithm1, nums);
+			printf("Running time: %.3f | ", realTime1);
+			double realTime2 = executionTimeAlgorithm(IDAlgorithm2, nums);
+			printf("%.3f\n", realTime2);
 		}
 		if (chosenOutputParameter == 1 || chosenOutputParameter == 2) { // calculate number of operations
 			long long comparisions1 = comparisionsAlgorithm(IDAlgorithm1, nums);

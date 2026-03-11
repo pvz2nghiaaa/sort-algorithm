@@ -2,11 +2,12 @@
 
 using namespace std;
 
+vector<int> tmpNums;
+
 void mergeRange(vector<int>& nums, int l, int mid, int r)
 {
     int i = l;
     int j = mid + 1;
-    vector<int> tmpNums(r - l + 1);
 
     int curIdx = 0;
     while (i <= mid && j <= r)
@@ -41,6 +42,7 @@ void mergeSort(vector<int>& nums)
 {
     int l = 0;
     int r = (int)nums.size() - 1;
+    tmpNums.assign(r - l + 1, 0);
     return mergeSort(nums, l, r);
 }
 
@@ -50,8 +52,6 @@ void mergeRangeOperationsCount(vector<int>& nums, int l, int mid, int r, long lo
     ++assignments;
     int j = mid + 1;
     ++assignments;
-    vector<int> tmpNums(r - l + 1);
-    assignments += (r - l + 1);
 
     int curIdx = 0;
     ++assignments;
@@ -108,5 +108,8 @@ void mergeSortOperationsCount(vector<int>& nums, long long& assignments, long lo
     ++assignments;
     int r = (int)nums.size() - 1;
     ++assignments;
+
+    tmpNums.assign(r - l + 1, 0);
+    assignments += (r - l + 1);
     return mergeSortOperationsCount(nums, l, r, assignments, comparisons);
 }
