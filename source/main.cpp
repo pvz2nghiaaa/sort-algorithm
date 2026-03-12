@@ -45,8 +45,8 @@ void (*const listSortOperationsCount[])(vector<int>&, long long&, long long&) = 
 // input parameter
 int input_size = -1;
 int chosenInputOrder = -1;
-const char* input_order[] = { "-rand", "-sorted", "-rev", "-nsorted" };
-const char* input_order_name[] = { "Randomize", "Sorted", "Reversed", "Nearly Sorted" };
+const char* input_order[] = { "-rand", "-sorted", "-rev", "-nsorted", "-qsortworst" };
+const char* input_order_name[] = { "Randomize", "Sorted", "Reversed", "Nearly Sorted", "Quick Sort Worst Case" };
 const char* input_txt_name[] = { "input_1.txt", "input_3.txt", "input_4.txt", "input_2.txt" };
 const int sizes[] = { 10000, 30000, 50000, 100000, 300000, 500000 };
 
@@ -255,7 +255,7 @@ int main(int argc, char* argv[]) {
 			input_size = atoi(argv[pos_argv]);
 		}
 		else if (argv[pos_argv][0] == '-') { // - indicates mode
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 5; i++)
 				if (strcmp(argv[pos_argv], input_order[i]) == 0) {
 					chosenInputOrder = i;
 					break;

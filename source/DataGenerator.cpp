@@ -59,6 +59,15 @@ void GenerateNearlySortedData(int a[], int n)
 	}
 }
 
+void GenerrateQuickSortWorstCase(int a[], int n)
+{
+	for (int i = 0; i < n; i++)
+		a[i] = i;
+	
+	for (int i = 1; i < n; i++)
+		swap(a[i], a[i >> 1]);
+}
+
 void GenerateData(int a[], int n, int dataType)
 {
 	switch (dataType)
@@ -74,6 +83,9 @@ void GenerateData(int a[], int n, int dataType)
 		break;
 	case 3:	// nearly sorted
 		GenerateNearlySortedData(a, n);
+		break;
+	case 4:
+		GenerrateQuickSortWorstCase(a, n);
 		break;
 	default:
 		printf("Error: unknown data type!\n");
