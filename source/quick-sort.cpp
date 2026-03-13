@@ -1,4 +1,5 @@
 #include <vector>
+
 using namespace std;
 
 void quickSort(vector<int> &nums, int low, int high)
@@ -6,7 +7,20 @@ void quickSort(vector<int> &nums, int low, int high)
     if (low >= high)
         return;
 
-    swap(nums[(low + high)/2], nums[high]);
+    if (high - low >= 2)
+    {
+        int mid = low + (high - low) / 2;
+
+        if (nums[low] > nums[mid])
+            swap(nums[low], nums[mid]);
+        if (nums[low] > nums[high])
+            swap(nums[low], nums[high]);
+        if (nums[mid] > nums[high])
+            swap(nums[mid], nums[high]);
+
+        swap(nums[mid], nums[high]);
+    }
+
     int pivot = nums[high];
     int i = low;
 
@@ -29,13 +43,41 @@ void quickSort(vector<int> &nums)
 {
     quickSort(nums, 0, nums.size() - 1);
 }
-
 void quick_Sort_OC(vector<int> &nums, int low, int high, long long &assignments, long long &comparisions)
 {
     if (++comparisions, low >= high)
         return;
 
-    int pivot = nums[(low + high)/2];
+    if (high - low >= 2)
+    {
+        int mid = low + (high - low) / 2;
+
+        ++comparisions;
+        if (nums[low] > nums[mid])
+        {
+            swap(nums[low], nums[mid]);
+            assignments += 3;
+        }
+
+        ++comparisions;
+        if (nums[low] > nums[high])
+        {
+            swap(nums[low], nums[high]);
+            assignments += 3;
+        }
+
+        ++comparisions;
+        if (nums[mid] > nums[high])
+        {
+            swap(nums[mid], nums[high]);
+            assignments += 3;
+        }
+
+        swap(nums[mid], nums[high]);
+        assignments += 3;
+    }
+
+    int pivot = nums[high];
     ++assignments;
     int i = low;
     ++assignments;
