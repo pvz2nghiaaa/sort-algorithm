@@ -3,26 +3,30 @@ using namespace std;
 
 void quickSort(vector<int> &nums, int low, int high)
 {
-    if (low >= high)
-        return;
+    while (low < high) {
+        swap(nums[(low + high) / 2], nums[high]);
+        int pivot = nums[high];
+        int i = low;
 
-    swap(nums[(low + high)/2], nums[high]);
-    int pivot = nums[high];
-    int i = low;
-
-    for (int j = low; j < high; j++)
-    {
-        if (nums[j] < pivot)
+        for (int j = low; j < high; j++)
         {
-            swap(nums[i], nums[j]);
-            i++;
+            if (nums[j] < pivot)
+            {
+                swap(nums[i], nums[j]);
+                i++;
+            }
+        }
+
+        swap(nums[i], nums[high]);
+        if (i - low < high - i) {
+            quickSort(nums, low, i - 1);
+            low = i + 1;
+        }
+        else {
+            quickSort(nums, i + 1, high);
+            high = i - 1;
         }
     }
-
-    swap(nums[i], nums[high]);
-
-    quickSort(nums, low, i - 1);
-    quickSort(nums, i + 1, high);
 }
 
 void quickSort(vector<int> &nums)
@@ -32,31 +36,31 @@ void quickSort(vector<int> &nums)
 
 void quick_Sort_OC(vector<int> &nums, int low, int high, long long &assignments, long long &comparisions)
 {
-    if (++comparisions, low >= high)
-        return;
+    while (++comparisions && low < high) {
+        swap(nums[(low + high) / 2], nums[high]); assignments += 3;
+        int pivot = nums[high]; ++assignments;
+        int i = low; ++assignments;
 
-    int pivot = nums[(low + high)/2];
-    ++assignments;
-    int i = low;
-    ++assignments;
-
-    ++assignments;
-    for (int j = low; ++comparisions, j < high; j++, ++assignments)
-    {
-        if (++comparisions, nums[j] < pivot)
+        ++assignments; // before loop
+        for (int j = low; ++comparisions && j < high; j++, ++assignments)
         {
-            swap(nums[i], nums[j]);
-            assignments += 3;
-            i++;
-            ++assignments;
+            if (++comparisions && nums[j] < pivot)
+            {
+                swap(nums[i], nums[j]); assignments += 3;
+                i++; ++assignments;
+            }
+        }
+
+        swap(nums[i], nums[high]); assignments += 3;
+        if (++comparisions && i - low < high - i) {
+            quick_Sort_OC(nums, low, i - 1, assignments, comparisions);
+            low = i + 1; ++assignments;
+        }
+        else {
+            quick_Sort_OC(nums, i + 1, high, assignments, comparisions);
+            high = i - 1; assignments;
         }
     }
-
-    swap(nums[i], nums[high]);
-    assignments += 3;
-
-    quick_Sort_OC(nums, low, i - 1, assignments, comparisions);
-    quick_Sort_OC(nums, i + 1, high, assignments, comparisions);
 }
 
 void quickSortOperationCount(vector<int> &nums, long long &assignments, long long &comparisions)
